@@ -5,8 +5,18 @@ const articleClient = require('../dbClients/articlesDB')
 const WeegieDB = require('./../dbClients/weegieQuestionDB')
 const path = require('path')
 const imagesDir = path.dirname(require.main.filename) + '/../public/images'
+const knex = require("../dbClients/connection");
 
 /* GET Articles page. */
+
+function getLanguages(){
+  return knex.select().from("languages");
+};
+
+router.get('/languages', async (req, res) =>{
+     const response = await getLanguages()
+    res.status(200).json({ success: true, response })
+})
 
 router.get('/articles', function (req, res, next) {
   const callBack = (error, articles) => {

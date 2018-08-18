@@ -26,7 +26,6 @@ exports.up = async (knex, Promise) => {
     table.foreign('category_id').references('category_id').inTable('categories')
     table.string('image')
     table.enum('status', ['pending', 'approved', 'rejected', 'hidden'])
-
     table.integer('sort_order')
     table.timestamps(true, true)
   })
